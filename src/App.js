@@ -1,7 +1,8 @@
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import ExpenseForm from "./components/Expenses/ExpenseForm";
+import React,{useState} from "react";
 
-const App = () => {
+const App = (props) => {
   const expenses = [
     {
       id: "e1",
@@ -26,10 +27,30 @@ const App = () => {
       location: "Delhi",
     },
   ];
+
+  const [enteredExpenseDetails, setEnteredExpenseDetails] = useState([]);
+
+  const expenseDataHandler = (enteredDetails) => {
+    const details = {
+      ...enteredDetails,
+      id: Math.random().toString(),
+    };
+    setEnteredExpenseDetails((prevDetails) => [...prevDetails, details]); // Add new details to the array
+  };
+
   return (
     <div>
       <h2>Let's get started!</h2>
-      <ExpenseForm></ExpenseForm>
+      <ExpenseForm onSave={expenseDataHandler}></ExpenseForm>
+      {enteredExpenseDetails.map((e) => (
+        <ExpenseItem
+          key={e.id}
+          title={e.title}
+          amount={e.expense}
+          date={e.date}
+          location={e.location}
+        />
+      ))}
       {expenses.map((expense) => (
         <ExpenseItem
           key={expense.id}

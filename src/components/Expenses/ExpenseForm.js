@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const[enteredTitle,setTitle]=useState('');
   const[enteredExpense ,setExpense] = useState ('');
   const[enteredDate,setDate]=useState('');
@@ -28,7 +28,11 @@ const ExpenseForm = () => {
         location : enteredLocation,
         date: new Date(enteredDate)
     }
-    console.log(obj);
+    props.onSave(obj);
+    setTitle('');
+    setDate('');
+    setExpense('');
+    setLocation('');
   }
 
   return (
@@ -39,6 +43,7 @@ const ExpenseForm = () => {
           type="date"
           id="dateInput"
           name="dateinput"
+          value={enteredDate}
           onChange={dateHandler}
         />
         <label htmlFor="titleInput">Expense title</label>
@@ -46,6 +51,7 @@ const ExpenseForm = () => {
           type="text"
           id="titleInput"
           name="titleInput"
+          value={enteredTitle}
           onChange={titleHandler}
         />
         <label htmlFor="expenseInput">Expense amount</label>
@@ -53,6 +59,7 @@ const ExpenseForm = () => {
           type="number"
           id="expenseInput"
           name="expenseInput"
+          value={enteredExpense}
           onChange={expenseHandler}
         />
         <label htmlFor="locationInput">Expense location</label>
@@ -60,6 +67,7 @@ const ExpenseForm = () => {
           type="text"
           id="locationInput"
           name="locationInput"
+          value={enteredLocation}
           onChange={locationHandler}
         />
         <button type="submit">add</button>
