@@ -1,11 +1,20 @@
+import React,{useState} from "react"; 
 import ExpenseDate from "./ExpenseDate";
 import ExpenseDetails from "./ExpenseDetails";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
+  const [title,setTitle]=useState(props.title);
+  const [expense,setExpense]=useState(props.amount);
+
   const clickHandler = () => {
-    console.log("clicked");
+    setTitle('updated!');
+    console.log(title);
   };
+
+  const expenseHandler = ()=>{
+    setExpense('100');
+  }
 
   const deleter = (e)=>{
     e.target.parentNode.style.display = 'none';
@@ -16,11 +25,12 @@ const ExpenseItem = (props) => {
     <div className="expense-item">
       <ExpenseDate date={props.date} />
       <ExpenseDetails
-        title={props.title}
-        amount={props.amount}
+        title={title}
+        amount={expense}
         location={props.location}
       />
       <button onClick={clickHandler}>Change Title</button>
+      <button onClick={expenseHandler}>Expns chng</button>
       <button
       onClick={deleter}>Delete</button>
     </div>
