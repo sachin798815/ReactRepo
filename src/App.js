@@ -2,6 +2,7 @@ import ExpenseForm from "./components/Expenses/ExpenseForm";
 import React, { useState } from "react";
 import FilterExpense from "./components/Expenses/FilterExpense";
 import ExpensesList from "./components/Expenses/ExpensesList";
+import ExpensesChart from "./components/Expenses/ExpensesChart";
 
 const App = (props) => {
   const expenses = [
@@ -43,7 +44,7 @@ const App = (props) => {
     setIsEditing(true);
   }
 
-  const stopEditingHandler = ()=>{
+  const stopEditingHandler = ()=>{ 
     setIsEditing(false);
   }
 
@@ -71,6 +72,7 @@ const App = (props) => {
       {!isEditing&&<button onClick={startEditingHandler}>Add new Expense</button>}
       {isEditing&&<ExpenseForm onSave={expenseDataHandler} onCancel={stopEditingHandler}/>}
       <FilterExpense selected={filteredYear} onChangeFilter={filterFunction} />
+      <ExpensesChart expenses={filteredExpense}></ExpensesChart>
       <ExpensesList items={filteredExpense}></ExpensesList>
     </div>
   );
