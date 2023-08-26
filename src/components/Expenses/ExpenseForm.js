@@ -1,17 +1,16 @@
 import { useState } from "react";
 
 const ExpenseForm = (props) => {
-  const[enteredTitle,setTitle]=useState('');
-  const[enteredExpense ,setExpense] = useState ('');
-  const[enteredDate,setDate]=useState('');
-  const[enteredLocation,setLocation]=useState('');
+  const [enteredTitle, setTitle] = useState("");
+  const [enteredExpense, setExpense] = useState("");
+  const [enteredDate, setDate] = useState("");
+  const [enteredLocation, setLocation] = useState("");
 
   const titleHandler = (e) => {
     setTitle(e.target.value);
   };
   const expenseHandler = (e) => {
     setExpense(e.target.value);
-    
   };
   const locationHandler = (e) => {
     setLocation(e.target.value);
@@ -20,20 +19,21 @@ const ExpenseForm = (props) => {
     setDate(e.target.value);
   };
 
-  const submitFunction=(e)=>{
+  const submitFunction = (e) => {
     e.preventDefault();
-    const obj={
-        title: enteredTitle,
-        expense : enteredExpense,
-        location : enteredLocation,
-        date: new Date(enteredDate)
-    }
+    const obj = {
+      title: enteredTitle,
+      expense: enteredExpense,
+      location: enteredLocation,
+      date: new Date(enteredDate),
+    };
     props.onSave(obj);
-    setTitle('');
-    setDate('');
-    setExpense('');
-    setLocation('');
-  }
+    setTitle("");
+    setDate("");
+    setExpense("");
+    setLocation("");
+  };
+
 
   return (
     <div>
