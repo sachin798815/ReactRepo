@@ -37,6 +37,15 @@ const App = (props) => {
 
   const [enteredExpenseDetails, setEnteredExpenseDetails] = useState([]);
   const [filteredYear, setFilteredYear] = useState("2021");
+  const [isEditing,setIsEditing]=useState(false);
+
+  const startEditingHandler = ()=>{
+    setIsEditing(true);
+  }
+
+  const stopEditingHandler = ()=>{
+    setIsEditing(false);
+  }
 
   const expenseDataHandler = (enteredDetails) => {
     const details = {
@@ -44,6 +53,7 @@ const App = (props) => {
       id: Math.random().toString(),
     };
     setEnteredExpenseDetails((prevDetails) => [...prevDetails, details]); // Add new details to the array
+    setIsEditing(false);
   };
 
   const filterFunction = (selectedYear) => {
@@ -58,7 +68,8 @@ const App = (props) => {
   return (
     <div>
       <h2>Let's get started!</h2>
-      <ExpenseForm onSave={expenseDataHandler} />
+      {!isEditing&&<button onClick={startEditingHandler}>Add new Expense</button>}
+      {isEditing&&<ExpenseForm onSave={expenseDataHandler} onCancel={stopEditingHandler}/>}
       <FilterExpense selected={filteredYear} onChangeFilter={filterFunction} />
       <ExpensesList items={filteredExpense}></ExpensesList>
     </div>

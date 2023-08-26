@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ExpenseForm.css"
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setTitle] = useState("");
@@ -37,7 +38,7 @@ const ExpenseForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={submitFunction}>
+      <form onSubmit={submitFunction} id="myForm">
         <label htmlFor="dateInput">Expense date</label>
         <input
           type="date"
@@ -70,6 +71,7 @@ const ExpenseForm = (props) => {
           value={enteredLocation}
           onChange={locationHandler}
         />
+        <button type="button" onClick={props.onCancel}>cancel</button>
         <button type="submit">add</button>
       </form>
     </div>
