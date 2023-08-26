@@ -1,7 +1,7 @@
-import ExpenseItem from "./components/Expenses/ExpenseItem";
 import ExpenseForm from "./components/Expenses/ExpenseForm";
 import React, { useState } from "react";
 import FilterExpense from "./components/Expenses/FilterExpense";
+import ExpensesList from "./components/Expenses/ExpensesList";
 
 const App = (props) => {
   const expenses = [
@@ -50,7 +50,8 @@ const App = (props) => {
     setFilteredYear(selectedYear);
   };
 
-  const filteredExpense = expenses.filter((expense) => {
+  let dummy = [...expenses, ...enteredExpenseDetails];
+  const filteredExpense = dummy.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
@@ -59,24 +60,7 @@ const App = (props) => {
       <h2>Let's get started!</h2>
       <ExpenseForm onSave={expenseDataHandler} />
       <FilterExpense selected={filteredYear} onChangeFilter={filterFunction} />
-      {filteredExpense.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          location={expense.location}
-        />
-      ))}
-      {enteredExpenseDetails.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          location={expense.location}
-        />
-      ))}
+      <ExpensesList items={filteredExpense}></ExpensesList>
     </div>
   );
 };
