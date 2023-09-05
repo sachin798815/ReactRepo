@@ -1,4 +1,4 @@
-import React, { useState,useReducer } from "react";
+import React, { useState,useReducer,useEffect } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
@@ -38,6 +38,15 @@ const Login = (props) => {
     value: "",
     isValid: null,
   });
+
+  const {isValid:emailIsValid}=emailState;
+  const {isValid:passwordIsValid}=passwordState;
+
+  useEffect(() => {
+    setFormIsValid(
+      emailIsValid && passwordIsValid && enteredCollege.trim().length>0
+    );
+  }, [emailIsValid, passwordIsValid, enteredCollege]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({type:'USER_INPUT',val:event.target.value});
