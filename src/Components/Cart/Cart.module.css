@@ -45,11 +45,36 @@
     color: white;
   }
 
+.list{
+  margin-bottom: 25px;
+}
+
+.list hr{
+  background-color: #976520;
+  height: 3px;
+  border-radius: 0 50% 50% 0;
+}
+
   .list-items{
     margin-right: 10px;
-    margin-bottom: 3px;
   }
 
   .bold{
     font-weight: bold;
+  }
+
+  .cart-items button{
+    width: 30px;
+    color: #974820;
+    text-align: center;
+    background-color:white;
+    margin-right: 5px;
+    border: 1px solid brown;
+    border-radius: 5px;
+  }
+
+  .cart-items button:hover{
+    cursor: pointer;
+    background-color: #974820;
+    color: white;
   }

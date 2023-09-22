@@ -3,6 +3,7 @@ import CartContext from "./cart-context";
 
 const CartProvider = (props) => {
   const [items, updateItems] = useState([]);
+
   const addItemToCartHandler = (item) => {
     const existingItemIndex = items.findIndex(
       (cartItem) => cartItem.id === item.id
@@ -10,14 +11,30 @@ const CartProvider = (props) => {
 
     if (existingItemIndex !== -1) {
       const updatedItems = [...items];
-      updatedItems[existingItemIndex].quantity = Number(updatedItems[existingItemIndex].quantity)+Number(item.quantity);
+      updatedItems[existingItemIndex].quantity =
+        Number(updatedItems[existingItemIndex].quantity) +
+        Number(item.quantity);
       updateItems(updatedItems);
     } else {
       updateItems((prevItems) => [...prevItems, item]);
     }
   };
 
-  const removeItemFromCartHandler = (id) => {};
+  const removeItemFromCartHandler = (item) => {
+    const existingItemIndex = items.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+
+    if (existingItemIndex !== -1) {
+      const updatedItems = [...items];
+      updatedItems[existingItemIndex].quantity =
+        Number(updatedItems[existingItemIndex].quantity) -
+        Number(item.quantity);
+      updateItems(updatedItems);
+    } else {
+      updateItems((prevItems) => [...prevItems, item]);
+    }
+  };
 
   const cartContext = {
     items: items,

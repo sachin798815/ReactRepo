@@ -6,11 +6,19 @@ import CartContext from "../../store/cart-context";
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
 
+  const minusBtnHandler = (item) => {
+    cartCtx.removeItem({ ...item, quantity: 1 });
+  };
+
+  const plusBtnHandler = (item) => {
+    cartCtx.addItem({ ...item, quantity: 1 });
+  };
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => {
         return (
-          <li key={item.id}>
+          <li key={item.id} className={classes.list}>
             <span className={classes["list-items"]}>
               <span className={classes.bold}>Name:</span>
               {item.name}
@@ -23,6 +31,9 @@ const Cart = (props) => {
               <span className={classes.bold}>Quantity:</span>
               {item.quantity}
             </span>
+            <button onClick={() => minusBtnHandler(item)}>-</button>
+            <button onClick={() => plusBtnHandler(item)}>+</button>
+            <hr />
           </li>
         );
       })}
@@ -38,7 +49,7 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>{cartTotal}</span>
+        <span>{cartTotal.toFixed(2)}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={props.onCloseClick}>
