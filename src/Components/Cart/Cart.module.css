@@ -44,3 +44,12 @@
     background-color: #8a2b06;
     color: white;
   }
+
+  .list-items{
+    margin-right: 10px;
+    margin-bottom: 3px;
+  }
+
+  .bold{
+    font-weight: bold;
+  }
