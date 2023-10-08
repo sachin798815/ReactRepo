@@ -7,7 +7,7 @@ const Cart = (props) => {
 
   const cartItems = (
     <ul>
-      {ctx.items.map((item) => {
+      {ctx.cartList.map((item) => {
         return (
           <li key={item.name}>
             {item.name} {item.largeQuantity}L {item.mediumQuantity}M {item.smallQuantity}S total:{((Number(item.largeQuantity)+Number(item.mediumQuantity)+Number(item.smallQuantity))*Number(item.price)).toFixed(2)}
@@ -18,7 +18,7 @@ const Cart = (props) => {
   );
 
   const cartTotal = (
-    ctx.items.reduce((prev,item)=>{
+    ctx.cartList.reduce((prev,item)=>{
         return prev+ ((item.largeQuantity+item.mediumQuantity+item.smallQuantity)*item.price);
     },0)
   )

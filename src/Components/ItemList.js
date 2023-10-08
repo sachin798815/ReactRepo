@@ -9,15 +9,15 @@ const ItemList=props=>{
     }
 
     const currentItem=(
-        ctx.items.map(item=>{
+        ctx.inventory.map(item=>{
             return <li key={Math.random()}>
                 <span>{item.name} </span>
                 <span>{item.description} </span>
                 <span>{item.price} </span>
                 <span>
-                    <button onClick={()=>{buyButtonHandler(item.name,"large")}}>Buy large ({item.largeQuantity})</button>
-                    <button onClick={()=>{buyButtonHandler(item.name,"medium")}}>Buy medium ({item.mediumQuantity})</button>
-                    <button onClick={()=>{buyButtonHandler(item.name,"small")}}>Buy small ({item.smallQuantity})</button>
+                    <button onClick={()=>{buyButtonHandler(item,"large")}}>Buy large ({item.largeQuantity})</button>
+                    <button onClick={()=>{buyButtonHandler(item,"medium")}}>Buy medium ({item.mediumQuantity})</button>
+                    <button onClick={()=>{buyButtonHandler(item,"small")}}>Buy small ({item.smallQuantity})</button>
                 </span>
             </li>
         })

@@ -4,6 +4,7 @@ import MainForm from "./Components/MainForm";
 import Cart from "./Components/Cart";
 import ItemList from "./Components/ItemList";
 import CartProvider from "./Components/cart-context/CartProvider";
+import CartButton from "./Components/CartButton";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -19,7 +20,7 @@ function App() {
     <CartProvider className="App">
       {showCart&&<Cart onClose={makeCartHiddenHandler}></Cart>}
       <MainForm></MainForm>
-      <button onClick={makeCartVisibleHandler}>Cart </button>
+      <CartButton onClick={makeCartVisibleHandler}></CartButton>
       <ItemList></ItemList>
     </CartProvider>
   );
