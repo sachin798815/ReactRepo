@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import BodyContainer from './Components/BodyComponents/BodyContainer';
+import CartComponent from './Components/CartComponent';
+import FooterInfo from './Components/FooterComponents/FooterInfo';
+import NavContainer from './Components/Navbar/NavContainer';
 
 function App() {
+  const [cartOpener,setCartOpener]=useState(false);
+  const cartOpenerFunction=()=>{
+    setCartOpener(true);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <NavContainer cartProp={cartOpenerFunction}></NavContainer>
+    <BodyContainer></BodyContainer>
+    <FooterInfo></FooterInfo>
+    {cartOpener&&<CartComponent></CartComponent>}
+    </>
   );
 }
 
