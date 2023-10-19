@@ -1,22 +1,23 @@
-import { useState } from 'react';
-import './App.css';
-import BodyContainer from './Components/BodyComponents/BodyContainer';
-import CartComponent from './Components/CartComponent';
-import FooterInfo from './Components/FooterComponents/FooterInfo';
-import NavContainer from './Components/Navbar/NavContainer';
+import { useState } from "react";
+import "./App.css";
+import BodyContainer from "./Components/BodyComponents/BodyContainer";
+import CartComponent from "./Components/CartComponent";
+import FooterInfo from "./Components/FooterComponents/FooterInfo";
+import NavContainer from "./Components/Navbar/NavContainer";
+import ContextProvider from "./Components/context-store/ContextProvider";
 
 function App() {
-  const [cartOpener,setCartOpener]=useState(false);
-  const cartOpenerFunction=()=>{
+  const [cartOpener, setCartOpener] = useState(false);
+  const cartOpenerFunction = () => {
     setCartOpener(true);
-  }
+  };
   return (
-    <>
-    <NavContainer cartProp={cartOpenerFunction}></NavContainer>
-    <BodyContainer></BodyContainer>
-    <FooterInfo></FooterInfo>
-    {cartOpener&&<CartComponent></CartComponent>}
-    </>
+    <ContextProvider>
+      <NavContainer cartProp={cartOpenerFunction}></NavContainer>
+      <BodyContainer></BodyContainer>
+      <FooterInfo></FooterInfo>
+      {cartOpener && <CartComponent></CartComponent>}
+    </ContextProvider>
   );
 }
 

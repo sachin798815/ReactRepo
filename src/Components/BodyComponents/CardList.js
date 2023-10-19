@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
+import CartContext from "../context-store/cart-context";
 
 const CardList = (props) => {
+  const ctx = useContext(CartContext);
   const productsArr = [
     {
       title: "Colors",
@@ -28,18 +31,27 @@ const CardList = (props) => {
     },
   ];
 
+  const addToCartHandler = (item) => {
+    ctx.addItem(item);
+  };
+
   return (
     <>
       <Row>
         {productsArr.map((item) => {
           return (
-            <Col  key={Math.random()} className="col-6 d-flex justify-content-center">
-              <Card style={{ width: '18rem',marginBottom:'100px'}}>
+            <Col
+              key={Math.random()}
+              className="col-6 d-flex justify-content-center"
+            >
+              <Card style={{ width: "18rem", marginBottom: "100px" }}>
                 <Card.Img variant="top" src={item.imageUrl} />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
                   <Card.Text>{item.price} Rs</Card.Text>
-                  <Button variant="warning">Add to cart</Button>
+                  <Button variant="warning" onClick={()=>{addToCartHandler(item)}}>
+                    Add to cart
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>

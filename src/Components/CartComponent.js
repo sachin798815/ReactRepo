@@ -1,40 +1,21 @@
 import { Button } from "react-bootstrap";
 import Modal from "./Modal";
+import { useContext } from "react";
+import CartContext from "./context-store/cart-context";
 
 const CartComponent = (props) => {
-    const cartElements = [
-      {
-        title: "Colors",
-        price: 100,
-        imageUrl:
-          "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-        quantity: 2,
-      },
-      {
-        title: "Black and white Colors",
-        price: 50,
-        imageUrl:
-          "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-        quantity: 3,
-      },
-      {
-        title: "Yellow and Black Colors",
-        price: 70,
-        imageUrl:
-          "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-        quantity: 1,
-      },
-    ];
+    const ctx=useContext(CartContext);
 
     const deleteBtnHandler=(e)=>{
     }
 
   const cartList=(<ul>
-    {cartElements.map((item)=>{
+    {ctx.items.map((item)=>{
         return(
             <li key={item.title}>
                 <span> {item.title} </span>
                 <span> {item.price} </span>
+                <span> {item.quantity} </span>
                 <Button onClick={()=>{deleteBtnHandler()}}>Delete</Button>
             </li>
         )
